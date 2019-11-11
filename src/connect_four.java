@@ -17,7 +17,7 @@ public class connect_four {
 
         System.out.println("CONNECT FOUR\n");
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {       //erzeugt array zum überprüfen wie viele Chips in einem Feld sind
             anzahl[i] = 0;
         }
 
@@ -31,15 +31,15 @@ public class connect_four {
             if ((rowy <= 6) && (rowx <= 7)) {
                 rowy = rowy - 1;   //Y
                 rowx = rowx - 1;  //X
-                char i = 0;
-                anzahl[rowx] = i;
 
-                anzahl[rowx] = i;
+
                 //char y = anzahl[rowy];
                 char y = ((char) rowy);
                 char x = ((char) rowx);
-                feld[i][x] = 'X';
-                i = (char) (i + 1);
+                feld[anzahl[rowx]][x] = 'X';
+                //i = (char) (i + 1);
+                anzahl[rowx]++;
+
 
             }
             showField(feld);
@@ -70,3 +70,5 @@ public class connect_four {
 
     }
 }
+
+public static void PlayerX()
