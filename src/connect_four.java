@@ -7,26 +7,39 @@ public class connect_four {
 
         //char x = X;
         //char o = O;
-
-        int row = 0;
+        char anzahl= 0;
+        int rowy = 0;
+        int rowx = 0;
         Scanner input = new Scanner(System.in);
         // create an array with the size of the needed connect four field
         char[][] feld = new char[6][7];
+        char[] anzahl = new char[7];
 
         System.out.println("CONNECT FOUR\n");
 
-
-
-
-
-
-        System.out.print("\nWhich ROW ?");
-        row = input.nextInt();
-        if (row<=6) {
-
-            char x = ((char) row);
-            feld[x][0] = 'X';
+        for (int i = 0; i < 6; i++) {
+            anzahl[i] = 0;
         }
+
+
+
+
+        System.out.print("\nWhich ROW ?"); //X
+        rowx = input.nextInt();
+        System.out.print("\nWhich Hight ?"); //Y
+        rowy = input.nextInt();
+        if (rowy<=6) {
+            rowy = rowy-1;
+            rowx = rowx-1;
+
+            char y = anzahl[rowy];
+            //char y = ((char) rowy);
+            char x = ((char) rowx);
+           feld[x][y] = 'X';
+           anzahl[rowy] = a;
+        }
+
+
 
         showField(feld);
 
