@@ -148,9 +148,9 @@ public class connect_four {
 
                 if (count == 4) {
 
-                    System.out.println("WINNER");
-                    auswahl =9;
-                    //System.exit(0);
+                    System.out.println("WINNER is Player X");
+                    //auswahl =9;
+                    System.exit(0);
 
 
                 }
@@ -169,9 +169,9 @@ public class connect_four {
                 if (count == 4) {
 
 
-                    System.out.println("WINNER");
-                    auswahl =9;
-                    //System.exit(0);
+                    System.out.println("WINNER is Player O");
+                   // auswahl =9;
+                    System.exit(0);
 
                 }
             }
