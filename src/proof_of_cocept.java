@@ -1,25 +1,9 @@
-package ConnectFour;
 
-public class Test {
+import kotlin.collections.unsigned.UArraysKt;
 
-    public static void showField (char[][] array) {
-        // Function that prints the field represented in an array
+import java.util.Scanner;
 
-        System.out.println(" 1 2 3 4 5 6 7");
-
-        // iterate trough the array and print each element (' ', 'X' or 'O')
-        // separated with "|"
-        for (int i = 0; i < 6; i++) {
-            System.out.print("|");
-            for (int j = 0; j < 7; j++) {
-                System.out.print(array[i][j]);
-                System.out.print("|");
-            }
-            System.out.print("\n");
-        }
-    }
-
-
+public class proof_of_cocept {
 
 
     public static void main(String[] args) {
@@ -39,26 +23,56 @@ public class Test {
 
 
         // create an array with the size of the needed connect four field
-        char[][] array = new char[6][7];
+        char[][] feld = new char[6][7];
 
         // fill the complete array with 'X'
-        for (int i = 0; i < 6; i++) {
+       /* for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                array[i][j] = 'X';
+                feld[i][j] = 'X';
             }
-        }
+        }*/
 
         // print the complete array
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
-                System.out.print(array[i][j]);
+                System.out.print(feld[i][j]);
             }
             System.out.print("\n");
         }
         System.out.print("\n");
 
         // function call to print the given array
-        showField(array);
+        showField(feld);
 
     }
+
+
+    public static void showField (char[][] feld) {
+        // Function that prints the field represented in an array
+
+        System.out.println(" 1 2 3 4 5 6 7");
+
+        // iterate trough the array and print each element (' ', 'X' or 'O')
+        // separated with "|"
+        for (int x = 0; x < 6; x++) {
+            System.out.print("|");
+            for (int y = 0; y < 7; y++) {
+                System.out.print(feld[x][y]);
+                System.out.print("|");
+            }
+            System.out.print("\n");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
