@@ -7,7 +7,7 @@ public class connect_four {
 
         //char x = X;
         //char o = O;
-        char anzahl= 0;
+        //char anzahl= 0;
         int rowy = 0;
         int rowx = 0;
         Scanner input = new Scanner(System.in);
@@ -23,22 +23,27 @@ public class connect_four {
 
 
 
+        do {
+            System.out.print("\nWhich ROW ?"); //X
+            rowx = input.nextInt();
+            //System.out.print("\nWhich Hight ?"); //Y
+            //rowy = input.nextInt();
+            if ((rowy <= 6) && (rowx <= 7)) {
+                rowy = rowy - 1;   //Y
+                rowx = rowx - 1;  //X
+                char i = 0;
+                anzahl[rowx] = i;
 
-        System.out.print("\nWhich ROW ?"); //X
-        rowx = input.nextInt();
-        System.out.print("\nWhich Hight ?"); //Y
-        rowy = input.nextInt();
-        if (rowy<=6) {
-            rowy = rowy-1;
-            rowx = rowx-1;
+                anzahl[rowx] = i;
+                //char y = anzahl[rowy];
+                char y = ((char) rowy);
+                char x = ((char) rowx);
+                feld[i][x] = 'X';
+                i = (char) (i + 1);
 
-            char y = anzahl[rowy];
-            //char y = ((char) rowy);
-            char x = ((char) rowx);
-           feld[x][y] = 'X';
-           anzahl[rowy] = a;
-        }
-
+            }
+            showField(feld);
+        }while(rowx !=9);
 
 
         showField(feld);
