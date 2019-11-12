@@ -133,6 +133,9 @@ public class connect_four {
         }
     }
 
+
+    //TODO -Checking Horizontal
+    //TODO -Cleanup of code
     public static void check(char[][] feld, char[] anzahl, int rowx, int auswahl) {
 
 
