@@ -90,7 +90,7 @@ public class connect_four {
 
     }
 
-
+/* input für player 1 oder 2. int player (kann 1 oder 2 sein) */
     public static void PlayerX(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
         System.out.print("PLAYER X");
         System.out.print("\nWhich ROW ? "); //X
@@ -133,6 +133,9 @@ public class connect_four {
         }
     }
 
+
+    //TODO -Checking Horizontal
+    //TODO -Cleanup of code
     public static void check(char[][] feld, char[] anzahl, int rowx, int auswahl) {
 
 
@@ -145,7 +148,7 @@ public class connect_four {
 
                     count++;
                 //System.out.println(count);
-
+                    else if (feld[i][j] == 'O') count =0;
                 if (count == 4) {
 
                     System.out.println("WINNER is Player X");
@@ -165,7 +168,7 @@ public class connect_four {
 
                     count++;
                 //System.out.println(count);
-
+                if (feld[i][j] == 'X') count = 0;
                 if (count == 4) {
 
 
