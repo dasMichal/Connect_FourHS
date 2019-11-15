@@ -1,9 +1,26 @@
 import java.util.*;
 
 public class connect_four {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
 
 
     public static void main(String[] args) {
+
+        //--------------------------
+
+
+
+
+
 
         //char o = O;
         //char anzahl= 0;
@@ -20,7 +37,7 @@ public class connect_four {
         }
 
 
-        System.out.println("CONNECT FOUR\n");
+        System.out.println(ANSI_RED+"CONNECT FOUR\n"+ANSI_RESET);
 
 
             /* Hauptmenue */
@@ -79,10 +96,10 @@ public class connect_four {
         // iterate trough the array and print each element (' ', 'X' or 'O')
         // separated with "|"
         for (int x = 0; x < 6; x++) {
-            System.out.print("|");
+            System.out.print(ANSI_GREEN+"|"+ANSI_RESET);
             for (int y = 0; y < 7; y++) {
                 System.out.print(feld[x][y]);
-                System.out.print("|");
+                System.out.print(ANSI_GREEN+"|"+ANSI_RESET);
             }
             System.out.print("\n");
         }
@@ -92,7 +109,7 @@ public class connect_four {
 
 /* input für player 1 oder 2. int player (kann 1 oder 2 sein) */
     public static void PlayerX(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
-        System.out.print("PLAYER X");
+        System.out.print("\nPLAYER X");
         System.out.print("\nWhich ROW ? "); //X
         rowx = input.nextInt();
         //System.out.print("\nWhich Hight ?"); //Y
@@ -179,5 +196,10 @@ public class connect_four {
                 }
             }
         }
+    }
+
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
