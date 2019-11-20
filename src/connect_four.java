@@ -42,37 +42,18 @@ public class connect_four {
         else {
             startGame(feld, anzahl, rowx, rowy, input, auswahl);            //Starting Game Instance
             }
-
-            /*
-            showField(feld);
-            PlayerX(feld, anzahl, rowx, rowy, input);
-            showField(feld);
-            check(feld, anzahl, rowx,auswahl);
-            PlayerO(feld, anzahl, rowx, rowy, input);
-            showField(feld);
-            check(feld, anzahl, rowx,auswahl);
-            */
-
-
     }
 
     private static void startGame(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input, int auswahl) {
 
         int playerID = 0;                                       //Number to distinguish between P1 & P2 turn (Modulo)
         do {
-            showField(feld);
-            //Calls the Methode to show the GameGrid
-            //PlayerX(feld, anzahl, rowx, rowy, input);
+            showField(feld);                                    //Calls the Methode to show the GameGrid
             Player(feld, anzahl, rowx, rowy,playerID, input);   //Calls the Method to let the Player Input
             showField(feld);
-            check2(feld, anzahl);                 //Check if a win condition is present
-            //Player(feld, anzahl, rowx, rowy,playerID, input);
-            //PlayerO(feld, anzahl, rowx, rowy, input);
-            //showField(feld);
-            //check(feld, anzahl, rowx, auswahl);
-            //clearScreen();                                      //
+            check2(feld, anzahl);                               //Check if a win condition is present
             playerID++;                                        //increasing Number to distinguish between P1 & P2
-        } while (auswahl != 9);
+        } while (rowx != 42);
     }
 
     public static void showField(char[][] feld) {
@@ -95,49 +76,9 @@ public class connect_four {
     }
 
     /* input für player 1 oder 2. int player (kann 1 oder 2 sein) */
-    public static void PlayerX(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
-        System.out.print("\nPLAYER X");
-        System.out.print("\nWhich ROW ? "); //X
-        rowx = input.nextInt();
-        //System.out.print("\nWhich Hight ?"); //Y
-        //rowy = input.nextInt();
-        if (rowx <= 7) {
-            //rowy = rowy - 1;   //Y
-            rowx = rowx - 1;  //X
 
 
-            //char y = anzahl[rowy];
-            //char y = ((char) rowy);
-            char x = ((char) rowx);
-            feld[anzahl[rowx]][x] = 'X';
-            //i = (char) (i + 1);
-            anzahl[rowx]--;
-
-        }
-    }
-
-    public static void PlayerO(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
-        System.out.print("PLAYER O");
-        System.out.print("\nWhich ROW ? "); //X
-        rowx = input.nextInt();
-        //System.out.print("\nWhich Hight ?"); //Y
-        //rowy = input.nextInt();
-        if (rowx <= 7) {
-            //rowy = rowy - 1;   //Y
-            rowx = rowx - 1;  //X
-
-
-            //char y = anzahl[rowy];
-            //char y = ((char) rowy);
-            char x = ((char) rowx);
-            feld[anzahl[rowx]][x] = 'O';
-            //i = (char) (i + 1);
-            anzahl[rowx]--;
-
-        }
-    }
-
-    public static void Player(char[][] feld, char[] anzahl, int rowx, int rowy, int playerID, Scanner input) {
+    private static void Player(char[][] feld, char[] anzahl, int rowx, int rowy, int playerID, Scanner input) {
 
         if ((playerID % 2) == 0)
         {
@@ -191,66 +132,7 @@ public class connect_four {
         }
 
 
-        //TODO -Cleanup of code
-
-    public static void check ( char[][] feld, char[] anzahl, int rowx, int auswahl){
-
-
-            int count = 0;
-            int i;
-
-            for (i = 0; i < 6; i++) {           //Check for X
-                for (int j = 0; j < 7; j++) {
-                    if (feld[i][j] == 'X')
-                    {
-                        System.out.println("X Found");
-                        count++;
-                        //System.out.println(count);
-                    }
-                    else if (feld[i][j] == 'O') count = 0;
-                    if (count == 4) {
-
-                        System.out.println("WINNER is Player X");
-                        //auswahl =9;
-                        System.exit(0);
-
-
-                    }
-                }
-            }
-
-            count = 0;
-
-            for (i = 6; i >= 0; i--) {       //Check for O
-                for (int j = 0; j < 7; j++) {
-                    if (feld[i][j] == 'O')
-                    {
-                        System.out.println("O Gefunden");
-                        count++;
-                        //System.out.println(count);
-                    }
-                    if (feld[i][j] == 'X') count = 0;
-
-                    if (count == 4) {
-
-
-                        System.out.println("WINNER is Player O");
-                        // auswahl =9;
-                        System.exit(0);
-
-                    }
-                }
-            }
-        }
-
-    public static void clearScreen() {
-        System.out.print("\n\n\n\n\n\n\n\n");
-        System.out.print("\u001b[H\u001b[2J");
-        //System.out.flush();
-    }
-
-
-    public static void check2 ( char[][] feld, char[] anzahl)
+    private static void check2(char[][] feld, char[] anzahl)
     {
 
         int counterx =0;
@@ -309,7 +191,7 @@ public class connect_four {
         for (int x = 0; x < 7; x++) {
             for (int y = 0; y < 6; y++) {
 
-                if (feld[y][x] == 'O')      //Checking for O
+                if (feld[y][x] == 'O')      //Checking for O Horizontal
                 {
                     counterx=0;
                     countero++;
@@ -365,7 +247,10 @@ public class connect_four {
 
             char x = ((char) rowx);
             feld[anzahl[rowx]][x] = 'X';
-        }   catch(Exception e) {
+
+
+        }   catch(Exception e)
+        {
 
         }
 
