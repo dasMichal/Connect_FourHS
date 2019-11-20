@@ -21,7 +21,7 @@ public class connect_four {
         char[][] feld = new char[6][7];                 //Creating the Game Grid
         char[] anzahl = new char[7];                    //Creating a Check Array to count how many chips are in the horizontl Array
 
-        for (int i = 0; i < anzahl.length; i++) {       // Fills the Check Array with the Number 5  max Horizontal = 5 Chips
+        for (int i = 0; i < anzahl.length; i++) {       // Fills the Check Array with the Number 5 => max Horizontal = 5 Chips
             anzahl[i] = 5;
         }
 
@@ -41,7 +41,7 @@ public class connect_four {
         if (auswahl == 9) System.exit(0);
         else {
             startGame(feld, anzahl, rowx, rowy, input, auswahl);            //Starting Game Instance
-            }
+        }
     }
 
     private static void startGame(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input, int auswahl) {
@@ -75,12 +75,10 @@ public class connect_four {
 
     }
 
-    /* input für player 1 oder 2. int player (kann 1 oder 2 sein) */
-
 
     private static void Player(char[][] feld, char[] anzahl, int rowx, int rowy, int playerID, Scanner input) {
 
-        if ((playerID % 2) == 0)
+        if ((playerID % 2) == 0)                //Check if its Player X or Player O turn
         {
 
             System.out.print("\nPLAYER X");
@@ -107,75 +105,70 @@ public class connect_four {
 
         } else
 
+        {
+
+            System.out.print("PLAYER O");
+            System.out.print("\nWhich ROW ? "); //X
+            rowx = input.nextInt();
+            //System.out.print("\nWhich Hight ?"); //Y
+            //rowy = input.nextInt();
+            if (rowx <= 7)
             {
-
-                System.out.print("PLAYER O");
-                System.out.print("\nWhich ROW ? "); //X
-                rowx = input.nextInt();
-                //System.out.print("\nWhich Hight ?"); //Y
-                //rowy = input.nextInt();
-                if (rowx <= 7)
-                {
-                    //rowy = rowy - 1;   //Y
-                    rowx = rowx - 1;  //X
+                //rowy = rowy - 1;   //Y
+                rowx = rowx - 1;  //X
 
 
-                    //char y = anzahl[rowy];
-                    //char y = ((char) rowy);
-                    char x = ((char) rowx);
-                    feld[anzahl[rowx]][x] = 'O';
-                    //i = (char) (i + 1);
-                    anzahl[rowx]--;
+                //char y = anzahl[rowy];
+                //char y = ((char) rowy);
+                char x = ((char) rowx);
+                feld[anzahl[rowx]][x] = 'O';
+                //i = (char) (i + 1);
+                anzahl[rowx]--;
 
-                }
             }
         }
+    }
 
 
-    private static void check2(char[][] feld, char[] anzahl)
-    {
+    private static void check2(char[][] feld, char[] anzahl) {
 
-        int counterx =0;
-        int countero =0;
+        int counterx = 0;
+        int countero = 0;
 
-            for (int x = 0; x < 7; x++) {
-                for (int y = 5; y >= 0; y--) {
+        for (int x = 0; x < 7; x++) {
+            for (int y = 5; y >= 0; y--) {
 
-                    if (feld[y][x] == 'X')      /*Checking for X Horizontal*/
-                    {
-                        countero=0;
-                        counterx++;
-                    }
-                    if (feld[y][x] == 'O')         //Reseting Counter X when findeing a O
-                    {
-                        counterx=0;
-                    }
-                    if (counterx>=4)
-                    {
-                        System.out.println("WINNER is Player X Horizontal");
-                        //auswahl =9;
-                        System.exit(0);
-
-                    }
-                }
-                //counterx=0;
-            }
-        counterx = 0;
-
-        for (int y = 5; y >= 0; y--) {
-            counterx =0;
-            for (int x = 0; x < 7; x++) {
-                if (feld[y][x] == 'X')      /*Checking for X Vertical*/
-                {
-                    countero=0;
+                if (feld[y][x] == 'X')      /*Checking for X Horizontal*/ {
+                    countero = 0;
                     counterx++;
                 }
                 if (feld[y][x] == 'O')         //Reseting Counter X when findeing a O
                 {
-                    counterx=0;
+                    counterx = 0;
                 }
-                if (counterx>=4)
+                if (counterx >= 4) {
+                    System.out.println("WINNER is Player X Horizontal");
+                    //auswahl =9;
+                    System.exit(0);
+
+                }
+            }
+            //counterx=0;
+        }
+        counterx = 0;
+
+        for (int y = 5; y >= 0; y--) {
+            counterx = 0;
+            for (int x = 0; x < 7; x++) {
+                if (feld[y][x] == 'X')      /*Checking for X Vertical*/ {
+                    countero = 0;
+                    counterx++;
+                }
+                if (feld[y][x] == 'O')         //Reseting Counter X when findeing a O
                 {
+                    counterx = 0;
+                }
+                if (counterx >= 4) {
                     System.out.println("WINNER is Player X Vertical");
                     //auswahl =9;
                     System.exit(0);
@@ -184,82 +177,78 @@ public class connect_four {
             }
         }
 
-
-
-
-
         for (int x = 0; x < 7; x++) {
-            for (int y = 0; y < 6; y++) {
+            for (int y = 5; y >= 0; y--) {
 
-                if (feld[y][x] == 'O')      //Checking for O Horizontal
-                {
-                    counterx=0;
-                    countero++;
+                if (feld[y][x] == 'X')      /*Checking for X Diagonal*/ {
+                    countero = 0;
+                    counterx++;
+
+                    do {
+
+                        if (feld[y - 1][x + 1] == 'X') counterx++;
+                        else counterx = 0;
+
+                    } while (counterx != 4);
+
                 }
-                if (feld[y][x] == 'X')      //reset counter O when found X
+                if (feld[y][x] == 'O')         //Reseting Counter X when findeing a O
                 {
-                    countero=0;
+                    counterx = 0;
                 }
-                if (countero>=4)
-                {
-                    System.out.println("WINNER is Player O Horizontal");
+                if (counterx >= 4) {
+                    System.out.println("WINNER is Player X Horizontal");
                     //auswahl =9;
                     System.exit(0);
 
                 }
             }
-        }
 
 
+            for (x = 0; x < 7; x++) {
+                for (int y = 0; y < 6; y++) {
 
-        for (int y = 5; y >= 0; y--) {
-            countero =0;
-            for (int x = 0; x < 7; x++) {
-                if (feld[y][x] == 'O')      /*Checking for O Vertical*/
-                {
-                    counterx=0;
-                    countero++;
-                }
-                if (feld[y][x] == 'X')         //Reseting Counter O when findeing a X
-                {
-                    countero=0;
-                }
-                if (countero>=4)
-                {
-                    System.out.println("WINNER is Player O Vertical");
-                    //auswahl =9;
-                    System.exit(0);
+                    if (feld[y][x] == 'O')      //Checking for O Horizontal
+                    {
+                        counterx = 0;
+                        countero++;
+                    }
+                    if (feld[y][x] == 'X')      //reset counter O when found X
+                    {
+                        countero = 0;
+                    }
+                    if (countero >= 4) {
+                        System.out.println("WINNER is Player O Horizontal");
+                        //auswahl =9;
+                        System.exit(0);
 
+                    }
                 }
             }
+
+
+            for (int y = 5; y >= 0; y--) {
+                countero = 0;
+                for (x = 0; x < 7; x++) {
+                    if (feld[y][x] == 'O')      /*Checking for O Vertical*/ {
+                        counterx = 0;
+                        countero++;
+                    }
+                    if (feld[y][x] == 'X')         //Reseting Counter O when findeing a X
+                    {
+                        countero = 0;
+                    }
+                    if (countero >= 4) {
+                        System.out.println("WINNER is Player O Vertical");
+                        //auswahl =9;
+                        System.exit(0);
+
+                    }
+                }
+            }
+
         }
 
-    }
-
-
-
-    public static void validInput(char[][] feld, char[] anzahl, int rowx, int rowy)
-    {
-        try
-        {
-            rowx = rowx - 1;  //X
-
-
-            char x = ((char) rowx);
-            feld[anzahl[rowx]][x] = 'X';
-
-
-        }   catch(Exception e)
-        {
-
-        }
 
     }
-
-
-
-
-
-
 }
-

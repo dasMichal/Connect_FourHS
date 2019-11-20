@@ -65,7 +65,47 @@ public class proof_of_cocept {
     }
 
 
+    public static void PlayerX(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
+        System.out.print("\nPLAYER X");
+        System.out.print("\nWhich ROW ? "); //X
+        rowx = input.nextInt();
+        //System.out.print("\nWhich Hight ?"); //Y
+        //rowy = input.nextInt();
+        if (rowx <= 7) {
+            //rowy = rowy - 1;   //Y
+            rowx = rowx - 1;  //X
 
+
+            //char y = anzahl[rowy];
+            //char y = ((char) rowy);
+            char x = ((char) rowx);
+            feld[anzahl[rowx]][x] = 'X';
+            //i = (char) (i + 1);
+            anzahl[rowx]--;
+
+        }
+    }
+
+    public static void PlayerO(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
+        System.out.print("PLAYER O");
+        System.out.print("\nWhich ROW ? "); //X
+        rowx = input.nextInt();
+        //System.out.print("\nWhich Hight ?"); //Y
+        //rowy = input.nextInt();
+        if (rowx <= 7) {
+            //rowy = rowy - 1;   //Y
+            rowx = rowx - 1;  //X
+
+
+            //char y = anzahl[rowy];
+            //char y = ((char) rowy);
+            char x = ((char) rowx);
+            feld[anzahl[rowx]][x] = 'O';
+            //i = (char) (i + 1);
+            anzahl[rowx]--;
+
+        }
+    }
 
 
 
