@@ -10,26 +10,26 @@ public class connect_four {
 
         //declaring Variables
 
-        //char o = O;
-        //char anzahl= 0;
         int rowy = 0;
         int rowx = 0;
         int auswahl;
 
 
         Scanner input = new Scanner(System.in);         //importing Scanner
-        // create an array with the size of the needed connect four field
+                                                        // create an array with the size of the needed connect four field
         char[][] feld = new char[6][7];                 //Creating the Game Grid
         char[] anzahl = new char[7];                    //Creating a Check Array to count how many chips are in the horizontl Array
 
-        // Fills the Check Array with the Number 5 => max Horizontal = 5 Chips
-        Arrays.fill(anzahl, (char) 5);
+
+        Arrays.fill(anzahl, (char) 5);                    // Fills the Check Array with the Number 5 => max Horizontal = 5 Chips
 
 
         System.out.println("CONNECT FOUR\n");
 
 
         /* Hauptmenue */
+
+
         System.out.print("\n");
         System.out.print("-----------------------------------------------\n");
         System.out.print("1.  Start New Game\n");
@@ -60,7 +60,7 @@ public class connect_four {
             Player(feld, anzahl, playerID, input);              //Calls the Method to let the Player Input
             showField(feld);
             check2(feld);                                       //Check if a win condition is present
-            playerID++;                                        //increasing Number to distinguish between P1 & P2
+            playerID++;                                         //Increasing Number to distinguish between P1 & P2
         } while (rowx != 42);
     }
 
@@ -88,7 +88,7 @@ public class connect_four {
 
         int rowx;
 
-        if ((playerID % 2) == 0)                //Check if its Player X or Player O turn
+        if ((playerID % 2) == 0)                                //Check if its Player X or Player O turn
         {
 
             System.out.print("\nPLAYER X");
@@ -287,4 +287,5 @@ public class connect_four {
     }
 
 
-    }
+}
+
