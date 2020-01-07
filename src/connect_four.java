@@ -88,6 +88,8 @@ public class connect_four {
 
         int rowx;
 
+        //TODO Check for array out of bound exeption
+
         if ((playerID % 2) == 0)                                //Check if its Player X or Player O turn
         {
 
