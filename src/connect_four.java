@@ -18,7 +18,7 @@ public class connect_four {
         Scanner input = new Scanner(System.in);         //importing Scanner
                                                         // create an array with the size of the needed connect four field
         char[][] feld = new char[6][7];                 //Creating the Game Grid
-        char[] anzahl = new char[7];                    //Creating a Check Array to count how many chips are in the horizontl Array
+        int[] anzahl = new int[7];                    //Creating a Check Array to count how many chips are in the horizontl Array
 
 
         Arrays.fill(anzahl, (char) 5);                    // Fills the Check Array with the Number 5 => max Horizontal = 5 Chips
@@ -52,13 +52,13 @@ public class connect_four {
 
 
 
-    private static void startGame(char[][] feld, char[] anzahl, int rowx, int rowy, Scanner input) {
+    private static void startGame(char[][] feld, int[] anzahl, int rowx, int rowy, Scanner input) {
 
         int playerID = 0;                                       //Number to distinguish between P1 & P2 turn (Modulo)
         do {
             showField(feld);                                    //Calls the Methode to show the GameGrid
             Player(feld, anzahl, playerID, input);              //Calls the Method to let the Player Input
-            showField(feld);
+            //showField(feld);
             check2(feld);                                       //Check if a win condition is present
             playerID++;                                         //Increasing Number to distinguish between P1 & P2
         } while (rowx != 42);
@@ -84,7 +84,7 @@ public class connect_four {
     }
 
 
-    private static void Player(char[][] feld, char[] anzahl, int playerID, Scanner input) {
+    private static void Player(char[][] feld, int[] anzahl, int playerID, Scanner input) {
 
         int rowx;
 
@@ -94,6 +94,8 @@ public class connect_four {
             System.out.print("\nPLAYER X");
             System.out.print("\nWhich ROW: ? "); //X
             rowx = input.nextInt();
+            System.out.print(anzahl[rowx]);
+
             //System.out.print("\nWhich Hight ?"); //Y
             //rowy = input.nextInt();
 
@@ -120,6 +122,8 @@ public class connect_four {
             System.out.print("PLAYER O");
             System.out.print("\nWhich ROW ? "); //X
             rowx = input.nextInt();
+            System.out.print(anzahl[rowx]);
+
             //System.out.print("\nWhich Hight ?"); //Y
             //rowy = input.nextInt();
             if (rowx <= 7)
@@ -285,6 +289,8 @@ public class connect_four {
         }
 
     }
+
+
 
 
 }
