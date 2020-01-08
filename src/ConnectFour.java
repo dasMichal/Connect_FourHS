@@ -18,23 +18,76 @@ public class ConnectFour {
             }
         }
 
+        String play1 = "Player X";
+        String play2 = "Player O";
+        String eingabe = "";
         int player;
         int column;
         int playerID = 0;
 
+        System.out.print("\n");
+        System.out.print("------------------CONNECT 4--------------------\n");
+        System.out.print("Do you want to change you playernames?\n");
+        System.out.print("-----------------------------------------------\n\n");
+        System.out.println("[1] = Yes | [2] = No ");
+        int auswahl = input.nextInt();
+
+        if (auswahl == 1)
+        {
+            System.out.println("Current name: "+play1);
+            System.out.print("New Name: ");
+            eingabe = input.next();
+            while(eingabe == null && eingabe.trim().isEmpty())
+            {
+                System.out.println("Empty names are not accepted!\nPlease try again");
+                System.out.print("Current name: "+play1);
+                System.out.print("New Name: ");
+                eingabe = input.next();
+            }
+            play1 = eingabe;
+
+            System.out.println("New Playername set\n");
+            eingabe = " ";
+
+            System.out.println("Current name: "+play2);
+            System.out.print("New Name: ");
+            eingabe = input.next();
+            while(eingabe == null && eingabe.trim().isEmpty())
+            {
+                System.out.println("Empty names are not accepted!\nPlease try again");
+                System.out.print("Current name: "+play2);
+                System.out.print("New Name: ");
+                eingabe = input.next();
+                System.out.println("New Playername set\n");
+                eingabe = " ";
+            }
+            play2 = eingabe;
+
+        }
+
+
+
+
         // execute loop while no one has won yet
         while (playerWins(array) == 0) {
+            System.out.print("\nRound N°"+(playerID+1));
             showField(array);
 
             column = 0;
             // this loop executes until the user gives a legal input for a column (1-7)
             do {
-                System.out.print("player[1|2] column [1-7]: ");
+
 
                 if ((playerID % 2) == 0)
                 {
                     player = 1;
-                }else player =2;
+                    System.out.println(play1+"'s turn ");
+                }else
+                    {
+                        player =2;
+                        System.out.println(play2+"'s turn ");
+                    }
+                System.out.print("Input the number of the column [1-7] to insert : ");
 
                 //player = input.nextInt();
                 column = input.nextInt();
@@ -90,6 +143,7 @@ public class ConnectFour {
         // separated with "|"
         for (int i = 0; i < 6; i++) {
             System.out.print("|");
+
             for (int j = 0; j < 7; j++) {
                 System.out.print(array[i][j]);
                 System.out.print("|");
