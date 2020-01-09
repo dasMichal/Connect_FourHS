@@ -1,4 +1,4 @@
-//package ConnectFour;
+package ConnectFour;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class ConnectFour {
         // create an array with the size of the needed connect four field
         char[][] array = new char[6][7];
 
-        // fill the complete array with ' ' (empty)
+        // fill the complete array with ' ' (equals empty on the field)
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 array[i][j] = ' ';
@@ -20,80 +20,107 @@ public class ConnectFour {
 
         String play1 = "Player X";
         String play2 = "Player O";
-        String eingabe = "";
+        String nameInput = "";
         int player;
         int column;
         int playerID = 0;
 
         System.out.print("\n");
         System.out.print("------------------CONNECT 4--------------------\n");
-        System.out.print("Do you want to change you playernames?\n");
+        System.out.print("Do you want to set your playernames?\n");
         System.out.print("-----------------------------------------------\n\n");
-        System.out.println("[1] = Yes | [2] = No ");
-        int auswahl = input.nextInt();
 
-        if (auswahl == 1)
-        {
-            System.out.println("Current name: "+play1);
-            System.out.print("New Name: ");
-            eingabe = input.next();
-            while(eingabe == null && eingabe.trim().isEmpty())
-            {
-                System.out.println("Empty names are not accepted!\nPlease try again");
-                System.out.print("Current name: "+play1);
-                System.out.print("New Name: ");
-                eingabe = input.next();
+        int userChoice = 1;
+        boolean inputOnlyDigits = false;
+
+        do {
+            System.out.print("[1] = Yes | [2] = No: ");
+            String userChoiceString = input.next();
+
+            // check if the user input only contains digits
+            inputOnlyDigits = true;
+            for (int i = 0; i < userChoiceString.length(); i++) {
+                if (!Character.isDigit(userChoiceString.charAt(i))) {
+                    inputOnlyDigits = false;
+                }
             }
-            play1 = eingabe;
 
-            System.out.println("New Playername set\n");
-            eingabe = " ";
-
-            System.out.println("Current name: "+play2);
-            System.out.print("New Name: ");
-            eingabe = input.next();
-            while(eingabe == null && eingabe.trim().isEmpty())
-            {
-                System.out.println("Empty names are not accepted!\nPlease try again");
-                System.out.print("Current name: "+play2);
-                System.out.print("New Name: ");
-                eingabe = input.next();
-                System.out.println("New Playername set\n");
-                eingabe = " ";
+            // user input only contains numbers
+            if (inputOnlyDigits) {
+                // convert string to int
+                userChoice = Integer.parseInt(userChoiceString);
             }
-            play2 = eingabe;
+            // user input not only contains numbers
+            if (inputOnlyDigits == false ){
+                System.out.println("Invalid input! Must be a number.");
+            }
+            // user input is not 1 or 2
+            else if (userChoice < 1 || userChoice > 2) {
+                System.out.println("Invalid input! Enter 1 or 2.");
+                inputOnlyDigits = false;
+            }
+
+        } while (!inputOnlyDigits);
+
+        if (userChoice == 1) {
+            System.out.println("Current name: "+ play1);
+            System.out.print("New Name: ");
+            nameInput = input.next();
+
+            play1 = nameInput;
+
+            System.out.println("New playername set to: " + play1 + "\n");
+
+            System.out.println("Current name: " + play2);
+            System.out.print("New Name: ");
+            nameInput = input.next();
+
+            play2 = nameInput;
+            System.out.println("New playername set to: " + play2 + "\n");
 
         }
 
-
-
-
         // execute loop while no one has won yet
         while (playerWins(array) == 0) {
-            System.out.print("\nRound N°"+(playerID+1));
+            System.out.print("\n\n------------ Round Nr. " + (playerID + 1) + "------------");
             showField(array);
 
             column = 0;
+            inputOnlyDigits = true;
             // this loop executes until the user gives a legal input for a column (1-7)
             do {
 
-
-                if ((playerID % 2) == 0)
-                {
+                if ((playerID % 2) == 0) {
                     player = 1;
-                    System.out.println(play1+"'s turn ");
-                }else
-                    {
-                        player =2;
-                        System.out.println(play2+"'s turn ");
-                    }
-                System.out.print("Input the number of the column [1-7] to insert : ");
+                    System.out.println("\n" + play1 + "'s turn ");
+                } else {
+                    player = 2;
+                    System.out.println("\n" + play2 + "'s turn ");
+                }
 
-                //player = input.nextInt();
-                column = input.nextInt();
+                System.out.print("Input the number of the column [1-7] to insert : ");
+                String s = input.next();
+
+                // check if the user input only contains digits
+                inputOnlyDigits = true;
+                for (int i = 0; i < s.length(); i++) {
+                    if (!Character.isDigit(s.charAt(i))) {
+                        inputOnlyDigits = false;
+                    }
+                }
+
+                if (inputOnlyDigits) {
+                    // convert string to int
+                    column = Integer.parseInt(s);
+                }
+
+                // user inputs not only numbers
+                if (inputOnlyDigits == false) {
+                    System.out.println("Invalid input! Must be a number.");
+                }
 
                 // user gives a invalid column
-                if (column <= 0 || column > 7) {
+                else if (column <= 0 || column > 7) {
                     System.out.println("Invalid input. Column must be between 1-7!");
                 }
 
@@ -103,7 +130,7 @@ public class ConnectFour {
                     column = 0;
                 }
 
-            } while (column <=  0 || column > 7);
+            } while (column <=  0 || column > 7 || !inputOnlyDigits);
 
             insertChip(player, column, array);
             playerID ++;
@@ -112,13 +139,19 @@ public class ConnectFour {
         showField(array);
 
         if (playerWins(array) == 1) {
-            System.out.println("Player X wins");
+            System.out.println("\n\n--------------");
+            System.out.println(play1 + " wins!");
+            System.out.println("--------------");
         }
         else if (playerWins(array) == 2) {
-            System.out.println("Player O wins");
+            System.out.println("\n\n--------------");
+            System.out.println(play2 + " wins!");
+            System.out.println("--------------");
         }
         else if (playerWins(array) == 3) {
-            System.out.println("Draw");
+            System.out.println("\n\n--------------");
+            System.out.println("This game is a draw!");
+            System.out.println("--------------");
         }
 
         input.close();
@@ -154,12 +187,7 @@ public class ConnectFour {
 
     /** check if a column is already full */
     public static boolean columnFull(int column, char[][] array) {
-        if (array[0][column] != ' ') {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return array[0][column] != ' ';
     }
 
     /** insert a chip into the field
