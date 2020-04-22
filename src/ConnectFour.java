@@ -1,8 +1,9 @@
-package ConnectFour;
 
 import java.util.Scanner;
 
 public class ConnectFour {
+
+    //Author: Danilo Zähle & Michal Sznurczak
 
     public static void main(String[] args) {
 
